@@ -147,9 +147,12 @@ class state:
       for p in permutations:
         s3=deepcopy(s2)
         s3.inventories[0]=[p[0],p[1],p[2],p[3]]
-        s3.realm(0).
+        s3.realm=[[cards[c] if type(c)==int else c for c in r] for r in s3.realm]
+        s3.revert_players()
+        neighbours.append(s3)
 
 
+    if not neighbours: neighbours=[deepcopy(self).revert_players()]
 
     return neighbours
 
